@@ -1,13 +1,6 @@
-def on_b_pressed():
-    mySprite.y += -10
-controller.B.on_event(ControllerButtonEvent.PRESSED, on_b_pressed)
-
-def on_a_pressed():
-    mySprite.start_effect(effects.disintegrate)
-controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
-
-Awnser = 0
-mySprite: Sprite = None
+@namespace
+class SpriteKind:
+    NPC = SpriteKind.create()
 scene.set_background_image(img("""
     eeeee2222222222222222222222222222222222ee2222ee2222ee2222222eeeee2222222222222222222222222222222222ee22222eeee222ee2eeeee2222222222222222222222222222222222ee222
         222eeeee22222222222222222222222222222eee2222eeee2222ee222222222eeeee22222222222222222222222222222eee2222eeeee222ee22222eeeee22222222222222222222222222222eee2222
@@ -130,9 +123,13 @@ scene.set_background_image(img("""
         222222e2ebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbe2e222222
         222222eeebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbeee222222
 """))
-game.splash("Scooby gang is on the move")
-mySprite = sprites.create(assets.image("""
-    Scooby SNAXX
-"""), SpriteKind.food)
-mySprite.say(game.ask_for_string(Awnser, 12))
-controller.move_sprite(mySprite)
+sprites.create(assets.image("""
+    Scooby
+"""), SpriteKind.NPC).set_position(76, 82)
+sprites.create(assets.image("""
+    Scooby
+"""), SpriteKind.NPC).say_text("Welcome", 1000, True)
+pause(2000)
+sprites.create(assets.image("""
+    Scooby
+"""), SpriteKind.NPC).say_text("This is the story of a rat that stole the show", 5000, True)
